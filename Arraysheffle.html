@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+	Array.prototype.shuffle=function(){
+		var max=this.length,
+		    arr=[];
+		for(var i=0;i<this.length;i++){
+			while(true){
+				var n=Math.floor(Math.random()*max);
+				if(arr[n]===undefined){
+					arr[n]=this[i];
+					break;
+				}
+			}
+		}
+		return arr;
+	}
+	Array.prototype.shuffle1=function(){
+		var max=this.length,
+		    arr=this.slice();
+			arr.sort(function(a,b){return Math.random()>0.5?1:-1})
+		return arr;
+	}
+	Array.prototype.shuffle2=function(){
+		for(var x,j, i=this.length;i;j=Math.floor(Math.random()*i),x=this[--i],this[i]=this[j],this[j]=x);
+		return this;
+	}
+	var arr=[];
+	for(var n=0;n<1000000;n++){
+		arr.push(n);
+	}
+	console.time("shuffle");
+	arr.shuffle();
+	console.timeEnd("shuffle");
+	console.time("shuffle1");
+	arr.shuffle();
+	console.timeEnd("shuffle1");
+	console.time("shuffle2");
+	arr.shuffle2();
+	console.timeEnd("shuffle2");
+
+  </script>
+ </body>
+</html>
