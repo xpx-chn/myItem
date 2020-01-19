@@ -1,0 +1,5 @@
+(function(){
+	var pip = document.querySelector('video')
+	pip.requestPictureInPicture().then((data) => {window.abc = data; console.log(data)})
+
+})()
